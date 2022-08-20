@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+html{
+    font-family: 'Silkscreen', cursive;
+    background-color: rgba(13, 46, 5, 0.85)
+}
+h1, h2, h3{
+    max-width: 360px;
+    margin: 10px auto;
+    color: #35b814;
+    text-align: center;
+}
+#game-container{
+    max-height: 540px;
+    max-width: 360px;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    background-color: #9fdfdf;
+    border: 1px solid white;
+}
+#high-scores>ol{
+    position: relative;
+    text-align: center;
+    color: #35b814;
+    font-size: 1.5rem;
+}
+footer>a{
+    display: block;
+    text-align: center;
+    color: #35b814;
+    text-decoration: none;
+}

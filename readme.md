@@ -50,6 +50,12 @@
 
 ## Wireframes
 
+### Wireframe of website layout
+![Wireframe of website layout](/images/wireframe-01.jpg)
+
+### Wireframe including a rought sketch of the game
+![Wireframe of website layout including rough sketch of game](/images/wireframe-02.jpg)
+
 ## User Stories
 - As a user I want to play a game that requires just one repetitive input so that I do not have a steep learning curve or skill barrier to overcome.
 - As a user I want to play a game for as long or as little time as I like so that I can enjoy it anytime without having to commit a block of time.
