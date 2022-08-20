@@ -51,10 +51,10 @@
 ## Wireframes
 
 ### Wireframe of website layout
-![Wireframe of website layout](/images/wireframe-01.jpg)
+![Wireframe of website layout](https://i.imgur.com/OfNiJBQ.jpg)
 
 ### Wireframe including a rought sketch of the game
-![Wireframe of website layout including rough sketch of game](/images/wireframe-02.jpg)
+![Wireframe of website layout including rough sketch of game](https://i.imgur.com/3wDK1ag.jpg)
 
 ## User Stories
 - As a user I want to play a game that requires just one repetitive input so that I do not have a steep learning curve or skill barrier to overcome.
