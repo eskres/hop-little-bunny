@@ -11,9 +11,8 @@ h1, h2, h3{
     text-align: center;
 }
 #game-container{
-    max-height: 540px;
-    max-width: 360px;
-    display: block;
+    height: 540px;
+    width: 360px;
     position: relative;
     margin: 0 auto;
     background-color: #9fdfdf;

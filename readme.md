@@ -4,28 +4,6 @@
 
 - User stories
     - Should I add more??
-
-- Wireframes
-
-- Build Skeleton Website
-    - Decide the game\'s container size and build it out with html and css
-    - Add placeholder for highscores
-    - Add placeholder for a very short instructions section
-
-- Start coding the game logic (using colour blocks instead of artwork)
-    - Animate scrolling section of background
-    - Animate character with user inputs
-    - Animate obstacles
-    - Figure out how to handle collisions between character and obstacles
-    - Create scoring system
-    - Create system to log highscores
-
-- Make website responsive
-
-- Create artwork
-- Replace colour blocks with artwork
-- Check for bugs
-
 ---
 
 # Hop Little Bunny
@@ -62,6 +40,28 @@
 - As a user I want to see what the highest scores achieved are so that I can try and compete against them.
 
 ## Planning and Development
+
+- Create Wireframes
+
+- Build Skeleton Website
+    - Decide the game\'s container size and build it out with html and css
+    - Add placeholder for highscores
+    - Add placeholder for a very short instructions section
+    - Add minimal css styles
+
+- Start coding the game logic using placeholder images instead of artwork
+    - Animate character with user inputs
+    - Animate obstacles
+    - Figure out how to handle collisions between character and obstacles
+    - Animate scrolling section of background
+    - Create scoring system
+    - Create system to log highscores
+
+- Create artwork
+- Replace colour blocks with artwork
+- Finalise CSS syling
+- Make website responsive
+- Check for any missed bugs
 
 ## Bugs to Resolve
 
