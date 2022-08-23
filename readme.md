@@ -44,24 +44,27 @@
 - Create Wireframes
 
 - Build Skeleton Website
-    - Decide the game\'s container size and build it out with html and css
-    - Add placeholder for highscores
-    - Add placeholder for a very short instructions section
-    - Add minimal css styles
+    - [X] Decide the game\'s container size and build it out with html and css
+    - [X] Add placeholder for highscores
+    - [ ] Add placeholder for a very short instructions section
+    - [X] Add minimal css styles
 
 - Start coding the game logic using placeholder images instead of artwork
-    - Animate character with user inputs
-    - Animate obstacles
-    - Figure out how to handle collisions between character and obstacles
-    - Animate scrolling section of background
-    - Create scoring system
-    - Create system to log highscores
+    - [X] Animate character with user inputs
+	- [X] Limit user inputs
+	- [X] Remove elements that leave the container
+    - [X] Animate obstacles
+    - [X] Increase obstacle speed incrementally
+    - [ ] Figure out how to handle collisions between character and obstacles
+    - [ ] Animate scrolling section of background
+    - [ ] Create scoring system
+    - [ ] Create system to log highscores
 
-- Create artwork
-- Replace colour blocks with artwork
-- Finalise CSS syling
-- Make website responsive
-- Check for any missed bugs
+- [ ] Create artwork
+- [ ] Replace colour blocks with artwork
+- [ ] Finalise CSS syling
+- [ ] Make website responsive
+- [ ] Check for any missed bugs
 
 ## Bugs to Resolve
 
