@@ -4,7 +4,7 @@ html{
     font-family: 'Silkscreen', cursive;
     background-color: rgba(13, 46, 5, 0.85)
 }
-h1, h2, h3{
+h1, h2, h3, h4{
     max-width: 360px;
     margin: 10px auto;
     color: #35b814;
@@ -17,6 +17,7 @@ h1, h2, h3{
     margin: 0 auto;
     background-color: #9fdfdf;
     border: 1px solid white;
+    z-index: -1;
 }
 #high-scores>ol{
     position: relative;
@@ -29,4 +30,10 @@ footer>a{
     text-align: center;
     color: #35b814;
     text-decoration: none;
+}
+#game-container>h2, #game-container>h3, #game-container>h4{
+    max-width: 360px;
+    margin: 20px auto;
+    color: white;
+    text-align: center;
 }

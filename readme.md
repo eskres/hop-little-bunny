@@ -55,9 +55,9 @@
 	- [X] Remove elements that leave the container
     - [X] Animate obstacles
     - [X] Increase obstacle speed incrementally
-    - [ ] Figure out how to handle collisions between character and obstacles
+    - [X] Figure out how to handle collisions between character and obstacles
     - [ ] Animate scrolling section of background
-    - [ ] Create scoring system
+    - [X] Create scoring system
     - [ ] Create system to log highscores
 
 - [ ] Create artwork
