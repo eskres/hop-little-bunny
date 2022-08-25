@@ -38,9 +38,9 @@ bunny.css({"position":"absolute",
 // 
 function hop() {
     $('body').off("keydown");
-    bnyY += 180;
+    bnyY += 128;
     bnyX += 120;
-    bunny.animate({'bottom': bnyY, "left": bnyX}, 600, 'easeInBack', function() {
+    bunny.animate({'bottom': bnyY, "left": bnyX}, speed/6, 'easeOutSine', function() {
         bnyY = ground-4;
         bunny.animate({'bottom': bnyY}, 2000, 'easeOutBounce', function() {
         });
@@ -68,7 +68,7 @@ function obstacles(){
         if (speed > 2000) {
             speed -= 200;
             growth += 6;
-        }
+        } 
         score += 10;
         obstacles();
     });
@@ -98,18 +98,26 @@ function gameOver() {
     // localStorage.setItem("test", score);
     // console.log(localStorage.getItem("test"));
     // Display game over message, final score + play again button
-    gme.append("<h2>GAME OVER!</h2>" + "<h3>YOUR SCORE: " + score + "</h3>" + "<button type='button' id='play'>PLAY AGAIN?</button>");
-    $(document).on("click", "#play", function(){
-        console.log("test");
-    });
+    gme.append("<h2>GAME OVER!</h2>" + "<h3>YOUR SCORE: " + score + "</h3>");
+    // $('body').append("<button id='test'>PLAY AGAIN?</button>");
 }
+
 //
 function listen() {
     if (stop === false) {
         $('body').on("keydown", hop);
     }
-    
 }
+$(document).ready(function(){
+    console.log("1");
+    console.log($('#test'));
+    let restart = ($('#test'));
+    restart.click(function(){
+        console.log("test");
+    });
+});
+
 positions();
 listen();
+
 obstacles();
