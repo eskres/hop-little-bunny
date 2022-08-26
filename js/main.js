@@ -6,6 +6,7 @@ const gme = $('#game-container');
 const bunnySrc = "images/bunny.png";
 const fgSrc = "images/fg.png";
 const obsSrc = "images/obs.png";
+const bgSrc = "images/bg.png";
 
 // 
 gme.prepend("<img src='" + bunnySrc + "'id='bunny'/>");
@@ -32,6 +33,7 @@ if (highscore === null) {
 }
 $('p.high-score').html(highscore);
 
+// 
 function foreground(){
     img = $("<img/>",{
         id: "fg",
@@ -55,8 +57,34 @@ function foreground(){
     });
     return 
 }
-
 foreground();
+// 
+function background(){
+    img = $("<img/>",{
+        id: "bg",
+        src: bgSrc
+    });
+    gme.prepend(img);
+    const bg = $('#bg');
+    bg.css({"position": "absolute",
+            "width": 720,
+            "height": 57,
+            "bottom": 88,
+            "left": 0,
+            "z-index": -1});
+    bg.animate({'left': -360}, speed*2, "linear", function(){
+        bg.remove();
+        if (stop === true) {
+            return
+        } else {
+            background();
+        }
+    });
+    return 
+}
+background();
+
+
 
 bunny.css({"position":"absolute",
         "bottom":bnyY,
@@ -127,6 +155,7 @@ function positions() {
 function gameOver() {
     $('#obs').stop(true);
     $('#fg').stop(true);
+    $('#bg').stop(true);
     bunny.stop(true);
     bunny.animate({"bottom": 0}, 600, "easeInBack");
     stop = true;
@@ -147,25 +176,29 @@ function listen() {
     }
 }
 function playAgain() {
-    bunny.hide();
-    bnyX = 24;
-    bnyY = ground-4;
-    bunny.animate({'bottom': bnyY, "left": bnyX}, 1);
-    bunny.show();
-    growth = 0;
-    score = 0;
-    stop = false;
-    bnyX = 24;
-    bnyY = ground-4;
-    obsX = gmeW-36;
-    speed = 6000;
-    $('#play-again').hide();
-    $('.game-over').hide();
-    $('#fg').remove();
-    foreground();
-    positions();
-    obstacles();
-    listen();
+    // TEMP WORKAROUND - RELOAD PAGE
+    location.reload();
+    // bunny.hide();
+    // bnyX = 24;
+    // bnyY = ground-4;
+    // bunny.animate({'bottom': bnyY, "left": bnyX}, 1);
+    // bunny.show();
+    // growth = 0;
+    // score = 0;
+    // stop = false;
+    // bnyX = 24;
+    // bnyY = ground-4;
+    // obsX = gmeW-36;
+    // speed = 6000;
+    // $('#play-again').hide();
+    // $('.game-over').hide();
+    // $('#fg').remove();
+    // $('#bg').remove();
+    // foreground();
+    // background();
+    // positions();
+    // obstacles();
+    // listen();
 }
 function highScore() {
     if (highscore !== null && score > highscore) {

@@ -20,7 +20,7 @@ h1, h2, h3, h4{
     position: relative;
     margin: 2% auto;
     background-color: #97DBD2;
-    border: 1px solid white;
+    border: 1px solid #F4F1DE;
     z-index: -1;
     overflow-x: hidden;
 }
