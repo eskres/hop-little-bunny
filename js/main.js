@@ -1,3 +1,4 @@
+// COLLATE INTO BUILD FUNCTION TO SET THE SCENE
 // Get html div that is to be used as the game's container and assign to variable
 const gme = $('#game-container');
 
@@ -6,19 +7,16 @@ const bunnySrc = "images/bunny.png";
 const fgSrc = "images/fg.png";
 const obsSrc = "images/obs.png";
 
-// Add image assets to DOM
-gme.prepend("<img src='" + fgSrc + "'id='fg' width='360' height='90'/>");
+// 
 gme.prepend("<img src='" + bunnySrc + "'id='bunny'/>");
+$('#play-again').hide();
 
 // Get image assets and assign to variables
 const bunny = $('#bunny');
-const fg = $('#fg');
 
-console.log(fg.height());
-console.log(fg.width());
-
+//
 const gmeW = gme.width();
-const ground = fg.height();
+const ground = 90;
 let growth = 0;
 let score = 0;
 let stop = false;
@@ -26,30 +24,62 @@ let bnyX = 24;
 let bnyY = ground-4;
 let obsX = gmeW-36;
 let speed = 6000;
+
 // 
-fg.css({"position":"absolute",
-        "bottom":"0",
-        "left":"0",
-        "z-index": 1});
+let highscore = localStorage.getItem("highscore");
+if (highscore === null) {
+    highscore = 0;
+}
+$('p.high-score').html(highscore);
+
+function foreground(){
+    img = $("<img/>",{
+        id: "fg",
+        src: fgSrc
+    });
+    gme.prepend(img);
+    const fg = $('#fg');
+    fg.css({"position": "absolute",
+            "width": 7200,
+            "height": 90,
+            "bottom": 0,
+            "left": 0,
+            "z-index": 2});
+    fg.animate({'left': -6840}, speed*20, "linear", function(){
+        fg.remove();
+        if (stop === true) {
+            return
+        } else {
+            foreground();
+        }
+    });
+    return 
+}
+
+foreground();
+
 bunny.css({"position":"absolute",
         "bottom":bnyY,
         "left":bnyX,
         "z-index":1});
 // 
 function hop() {
+    console.log("running");
     $('body').off("keydown");
+    $('body').off("click");
+    setTimeout(listen, 2000);
     bnyY += 128;
     bnyX += 120;
     bunny.animate({'bottom': bnyY, "left": bnyX}, speed/6, 'easeOutSine', function() {
         bnyY = ground-4;
-        bunny.animate({'bottom': bnyY}, 2000, 'easeOutBounce', function() {
-        });
-        setTimeout(listen, 900);
-        if (bnyX > 24) {
-            bnyX = 24;
-            bunny.animate({'left': bnyX}, (speed*0.25));
-        }
+        bunny.animate({'bottom': bnyY}, speed/4, 'easeOutBounce');
+    if (bnyX > 24) {
+        bnyX = 24;
+        bunny.animate({'left': bnyX}, (speed/4), "linear");
+    }
     });
+    $("body").clearQueue();
+    return
 };
 // 
 function obstacles(){
@@ -59,21 +89,26 @@ function obstacles(){
     });
     gme.append(img);
     const obs = $('#obs');
-    obs.css({"position":"absolute",
+    obs.css({"position": "absolute",
             "bottom": (ground-70) + growth,
             "left": obsX,
             "z-index": -1});
     obs.animate({'left': 0}, speed, "linear", function(){
         obs.remove();
         if (speed > 2000) {
-            speed -= 200;
+            speed -= 266;
             growth += 6;
         } 
         score += 10;
-        obstacles();
+        if (stop === true) {
+            return
+        } else {
+            obstacles();
+        }
     });
-    
+    return 
 }
+
 // 
 function positions() {
     let id = setInterval(getPos, 10);
@@ -85,39 +120,74 @@ function positions() {
         if ((bnyPosX + 50) >= obsPosX && (bnyPosY + 50) >= obsPosY && bnyPosX <= (obsPosX + 36)) {
             gameOver();
             clearInterval(id);
+            return
         }   
     }
 }
 // 
 function gameOver() {
     $('#obs').stop(true);
+    $('#fg').stop(true);
     bunny.stop(true);
     bunny.animate({"bottom": 0}, 600, "easeInBack");
     stop = true;
-    listen();
-    // localStorage.setItem("test", score);
-    // console.log(localStorage.getItem("test"));
-    // Display game over message, final score + play again button
-    gme.append("<h2>GAME OVER!</h2>" + "<h3>YOUR SCORE: " + score + "</h3>");
-    // $('body').append("<button id='test'>PLAY AGAIN?</button>");
+    $('#obs').remove();
+    highScore();
+    gme.append("<h2 class='game-over'>GAME OVER!</h2>" + "<h2 class='game-over'>YOUR SCORE: " + score + "</h2>");
+    $('#play-again').fadeIn()
 }
-
 //
 function listen() {
     if (stop === false) {
-        $('body').on("keydown", hop);
+        $('body').on("keydown", function () {
+            hop()
+        });
+        $('body').on("click", function () {
+            hop()
+        });
     }
 }
-$(document).ready(function(){
-    console.log("1");
-    console.log($('#test'));
-    let restart = ($('#test'));
-    restart.click(function(){
-        console.log("test");
-    });
-});
+function playAgain() {
+    bunny.hide();
+    bnyX = 24;
+    bnyY = ground-4;
+    bunny.animate({'bottom': bnyY, "left": bnyX}, 1);
+    bunny.fadeIn();
+    growth = 0;
+    score = 0;
+    stop = false;
+    bnyX = 24;
+    bnyY = ground-4;
+    obsX = gmeW-36;
+    speed = 6000;
+    $('#play-again').hide()
+    $('.game-over').remove()
+    $('#fg').remove();
 
-positions();
-listen();
+    foreground();
+    positions();
+    obstacles();
+    listen();
+}
+function highScore() {
+    if (highscore !== null && score > highscore) {
+        localStorage.setItem("highscore", score);
+    } else if (highscore === null){
+        localStorage.setItem("highscore", score);
+    }
+    $('p.high-score').html(highscore);
+}
 
-obstacles();
+$('#play').click(function () {
+    $("body").clearQueue();
+    event.stopPropagation();
+    $('#play').hide()
+    positions();
+    obstacles();
+    listen();
+})
+$('#play-again').click(function () {
+    $("body").clearQueue();
+    event.stopPropagation();
+    playAgain();
+})
