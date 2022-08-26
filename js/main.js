@@ -64,7 +64,6 @@ bunny.css({"position":"absolute",
         "z-index":1});
 // 
 function hop() {
-    console.log("running");
     $('body').off("keydown");
     $('body').off("click");
     setTimeout(listen, 2000);
@@ -117,7 +116,7 @@ function positions() {
         bnyPosY = bunny.position().top;
         obsPosX = $('#obs').position().left;
         obsPosY = $('#obs').position().top;
-        if ((bnyPosX + 50) >= obsPosX && (bnyPosY + 50) >= obsPosY && bnyPosX <= (obsPosX + 36)) {
+        if ((bnyPosX + 36) >= obsPosX && (bnyPosY + 36) >= obsPosY && bnyPosX <= (obsPosX + 36)) {
             gameOver();
             clearInterval(id);
             return
@@ -134,7 +133,7 @@ function gameOver() {
     $('#obs').remove();
     highScore();
     gme.append("<h2 class='game-over'>GAME OVER!</h2>" + "<h2 class='game-over'>YOUR SCORE: " + score + "</h2>");
-    $('#play-again').fadeIn()
+    $('#play-again').show();
 }
 //
 function listen() {
@@ -152,7 +151,7 @@ function playAgain() {
     bnyX = 24;
     bnyY = ground-4;
     bunny.animate({'bottom': bnyY, "left": bnyX}, 1);
-    bunny.fadeIn();
+    bunny.show();
     growth = 0;
     score = 0;
     stop = false;
@@ -160,10 +159,9 @@ function playAgain() {
     bnyY = ground-4;
     obsX = gmeW-36;
     speed = 6000;
-    $('#play-again').hide()
-    $('.game-over').remove()
+    $('#play-again').hide();
+    $('.game-over').hide();
     $('#fg').remove();
-
     foreground();
     positions();
     obstacles();
@@ -175,19 +173,21 @@ function highScore() {
     } else if (highscore === null){
         localStorage.setItem("highscore", score);
     }
+    highscore = localStorage.getItem("highscore");
     $('p.high-score').html(highscore);
 }
 
 $('#play').click(function () {
     $("body").clearQueue();
     event.stopPropagation();
-    $('#play').hide()
+    $('#play').fadeOut()
     positions();
     obstacles();
     listen();
 })
+
 $('#play-again').click(function () {
     $("body").clearQueue();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
     playAgain();
 })
