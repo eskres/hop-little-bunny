@@ -116,7 +116,7 @@ function positions() {
         bnyPosY = bunny.position().top;
         obsPosX = $('#obs').position().left;
         obsPosY = $('#obs').position().top;
-        if ((bnyPosX + 36) >= obsPosX && (bnyPosY + 36) >= obsPosY && bnyPosX <= (obsPosX + 36)) {
+        if ((bnyPosX + 36) >= obsPosX && (bnyPosY + 50) >= obsPosY && bnyPosX <= (obsPosX + 36)) {
             gameOver();
             clearInterval(id);
             return
