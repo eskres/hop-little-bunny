@@ -8,7 +8,7 @@
 
 # Hop Little Bunny
 
-##### Inspired by the pre-eminent side scrolling games of the late \'80s and early \'90s, the simple mechanics of flappy bird and one of my daughter\'s favourite nursery rhymes.
+##### Inspired by the outstanding side scrolling games of the late \'80s and early \'90s, the simple mechanics of flappy bird and one of my daughter\'s favourite nursery rhymes.
 ---
 | Table of Contents |
 |-|

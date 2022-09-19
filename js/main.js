@@ -57,7 +57,6 @@ function foreground(){
     });
     return 
 }
-foreground();
 // 
 function background(){
     img = $("<img/>",{
@@ -82,9 +81,6 @@ function background(){
     });
     return 
 }
-background();
-
-
 
 bunny.css({"position":"absolute",
         "bottom":bnyY,
@@ -92,23 +88,20 @@ bunny.css({"position":"absolute",
         "z-index":1});
 // 
 function hop() {
-    $('body').off("keydown");
-    $('body').off("click");
-    setTimeout(listen, 2000);
-    bnyY += 128;
-    bnyX += 120;
-    bunny.animate({'bottom': bnyY, "left": bnyX}, speed/6, 'easeOutSine', function() {
-        bnyY = ground-4;
-        bunny.animate({'bottom': bnyY}, speed/4, 'easeOutBounce');
-    if (bnyX > 24) {
-        bnyX = 24;
-        bunny.animate({'left': bnyX}, (speed/4), "linear");
+    if (bnyY === 86) {
+        bnyY += 128;
+        bnyX += 120;
+        bunny.animate({'bottom': bnyY, "left": bnyX}, speed/6, 'easeOutSine', function() {
+            bnyY = ground-4;
+            bunny.animate({'bottom': bnyY}, speed/4, 'easeOutBounce');
+        if (bnyX > 24) {
+            bnyX = 24;
+            bunny.animate({'left': bnyX}, (speed/4), "linear");
+        }
+        });
     }
-    });
-    $("body").clearQueue();
-    return
 };
-// 
+
 function obstacles(){
     img = $("<img/>",{
         id: "obs",
@@ -168,37 +161,35 @@ function gameOver() {
 function listen() {
     if (stop === false) {
         $('body').on("keydown", function () {
+            console.log("X:"+bnyX+"Y:"+bnyY);
             hop()
         });
         $('body').on("click", function () {
+            console.log("X:"+bnyX+"Y:"+bnyY);
             hop()
         });
     }
 }
-function playAgain() {
-    // TEMP WORKAROUND - RELOAD PAGE
-    location.reload();
-    // bunny.hide();
-    // bnyX = 24;
-    // bnyY = ground-4;
-    // bunny.animate({'bottom': bnyY, "left": bnyX}, 1);
-    // bunny.show();
-    // growth = 0;
-    // score = 0;
-    // stop = false;
-    // bnyX = 24;
-    // bnyY = ground-4;
-    // obsX = gmeW-36;
-    // speed = 6000;
-    // $('#play-again').hide();
-    // $('.game-over').hide();
-    // $('#fg').remove();
-    // $('#bg').remove();
-    // foreground();
-    // background();
-    // positions();
-    // obstacles();
-    // listen();
+function playAgain() {   
+    bunny.hide();
+    bnyX = 24;
+    bnyY = ground-4;
+    bunny.animate({'bottom': bnyY, "left": bnyX}, 1);
+    bunny.show();
+    growth = 0;
+    score = 0;
+    stop = false;
+    obsX = gmeW-36;
+    speed = 6000;
+    $('#play-again').hide();
+    $('.game-over').hide();
+    $('#fg').remove();
+    $('#bg').remove();
+    foreground();
+    background();
+    positions();
+    obstacles();
+    start();
 }
 function highScore() {
     if (highscore !== null && score > highscore) {
@@ -209,18 +200,19 @@ function highScore() {
     highscore = localStorage.getItem("highscore");
     $('p.high-score').html(highscore);
 }
-
-$('#play').click(function () {
-    $("body").clearQueue();
+function start() {
+$('#play').one("click", function () {
     event.stopPropagation();
     $('#play').fadeOut()
     positions();
     obstacles();
     listen();
 })
-
-$('#play-again').click(function () {
-    $("body").clearQueue();
-    event.stopImmediatePropagation();
+$('#play-again').one("click", function () {
+    event.stopPropagation();
     playAgain();
 })
+}
+background();
+foreground();
+start();
