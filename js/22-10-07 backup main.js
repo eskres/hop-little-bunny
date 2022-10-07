@@ -1,35 +1,15 @@
-const assets = {
-    bunny: "images/bunny.png",
-    obstacle: "images/obs.png",
-    foreground: "images/fg.png",
-    background: "images/bg.png",
-}
-
-function Bunny(elem, x, y) {
-    this.elem = elem;
-    this.x = x;
-    this.y = y;
-}
-function Obstacle(elem, x, y) {
-    this.elem = elem;
-    this.x = x;
-    this.y = y;
-}
-function Background(elem, x, y) {
-    this.elem = elem;
-    this.x = x;
-    this.y = y;
-}
-function Foreground(elem, x, y) {
-    this.elem = elem;
-    this.x = x;
-    this.y = y;
-}
+// COLLATE INTO BUILD FUNCTION TO SET THE SCENE
 // Get html div that is to be used as the game's container and assign to variable
 const gme = $('#game-container');
 
+// Assign variables to image asset sources
+const bunnySrc = "images/bunny.png";
+const fgSrc = "images/fg.png";
+const obsSrc = "images/obs.png";
+const bgSrc = "images/bg.png";
+
 // 
-gme.prepend("<img src='" + assets.bunny + "'id='bunny'/>");
+gme.prepend("<img src='" + bunnySrc + "'id='bunny'/>");
 $('#play-again').hide();
 
 // Get image assets and assign to variables
@@ -57,7 +37,7 @@ $('p.high-score').html(highscore);
 function foreground(){
     img = $("<img/>",{
         id: "fg",
-        src: assets.foreground
+        src: fgSrc
     });
     gme.prepend(img);
     const fg = $('#fg');
@@ -81,7 +61,7 @@ function foreground(){
 function background(){
     img = $("<img/>",{
         id: "bg",
-        src: assets.background
+        src: bgSrc
     });
     gme.prepend(img);
     const bg = $('#bg');
@@ -125,7 +105,7 @@ function hop() {
 function obstacles(){
     img = $("<img/>",{
         id: "obs",
-        src: assets.obstacle
+        src: obsSrc
     });
     gme.append(img);
     const obs = $('#obs');
