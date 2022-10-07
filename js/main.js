@@ -5,9 +5,20 @@ const assets = {
     background: "images/bg.png",
 }
 
-function Bunny(elem, x, y) {
-    this.elem = elem;
-    this.x = x;
+const foregrounds = {
+    img: $("<img/>", {id: "fg", src: assets.foreground}),
+    elem: $('#fg'),
+    style: {"position": "absolute",
+            "width": 7200,
+            "height": 90,
+            "bottom": 0,
+            "left": 0,
+            "z-index": 2},
+}
+
+function Bunny(y) {
+    this.elem = $('#bunny'); //PROB REMOVE
+    this.x = 24;
     this.y = y;
 }
 function Obstacle(elem, x, y) {
@@ -20,11 +31,15 @@ function Background(elem, x, y) {
     this.x = x;
     this.y = y;
 }
-function Foreground(elem, x, y) {
-    this.elem = elem;
-    this.x = x;
-    this.y = y;
+
+let sandbox = {
+    elem: $('#game-container'), //PROB REMOVE
+    get width() {this.elem.width()},
+    ground: 90,
+    growth: 0,
+    speed: 6000,
 }
+
 // Get html div that is to be used as the game's container and assign to variable
 const gme = $('#game-container');
 
@@ -35,15 +50,12 @@ $('#play-again').hide();
 // Get image assets and assign to variables
 const bunny = $('#bunny');
 
-//
-const gmeW = gme.width();
-const ground = 90;
 let growth = 0;
 let score = 0;
 let stop = false;
 let bnyX = 24;
-let bnyY = ground-4;
-let obsX = gmeW-36;
+let bnyY = sandbox.ground-4;
+let obsX = sandbox.width-36;
 let speed = 6000;
 
 // 
@@ -55,19 +67,10 @@ $('p.high-score').html(highscore);
 
 // 
 function foreground(){
-    img = $("<img/>",{
-        id: "fg",
-        src: assets.foreground
-    });
-    gme.prepend(img);
+    gme.prepend(foregrounds.img);
     const fg = $('#fg');
-    fg.css({"position": "absolute",
-            "width": 7200,
-            "height": 90,
-            "bottom": 0,
-            "left": 0,
-            "z-index": 2});
-    fg.animate({'left': -6840}, speed*20, "linear", function(){
+    fg.css(foregrounds.style);
+    fg.animate({'left': -6840}, sandbox.speed*20, "linear", function(){
         fg.remove();
         if (stop === true) {
             return
