@@ -1,55 +1,57 @@
-// image assets src stored in this object
+// Sources for image assets stored in this object
 const assets = {
     bunny: "images/bunny.png",
     obstacle: "images/obs.png",
     foreground: "images/fg.png",
     background: "images/bg.png",
 }
-
-const environ = {
+// jQuery selector elements added to this object when they are available
+const elements = {
     container: $('#game-container'),
-    foreground: $('#fg'),
     bunny: $('#bunny'),
 }
-
-// jQuery stuff here for now
-// const fg = $('#fg');
-environ.container.prepend("<img src='" + assets.bunny + "'id='bunny'/>");
-$('#play-again').hide();
-const bunny = $('#bunny');
-
-// Foreground related things in this object literal
+// measure variables in this object literal
+let measure = {
+    width: elements.container.width(),
+    ground: 90,
+    growth: 0,
+    speed: 6000,
+}
+// Foreground properties
 let foreground = {
-    img: $("<img/>", {id: "fg", src: assets.foreground}),
-    // elem: $('#fg'),
+    image: $("<img/>", {id: "fg", src: assets.foreground}),
+    placeImage: function () {
+        elements.container.prepend(this.image);
+    },
     style: {"position": "absolute",
             "width": 7200,
             "height": 90,
             "bottom": 0,
             "left": 0,
             "z-index": 2},
-    animate: function() {
-        environ.container.prepend(this.img);
-        const fg = $('#fg');
-        fg.css(this.style);
-        fg.animate({'left': -6840}, measure.speed*20, "linear", function(){
-        fg.remove();
-        if (stop === true) {
-            return
-        } else {
-            foreground.animate();
-        }
-    });
-    return 
-    }
+    dest: 6480,
+    speed: measure.speed*20,
 }
-// measure variables in this object literal
-let measure = {
-    width: environ.container.width(),
-    ground: 90,
-    growth: 0,
-    speed: 6000,
+// Background properties
+let background = {
+    image: $("<img/>",{ id: "bg", src: assets.background }),
+    placeImage: function () {
+        elements.container.prepend(this.image);
+    },
+    style: {"position": "absolute",
+            "width": 720,
+            "height": 57,
+            "bottom": 88,
+            "left": 0,
+            "z-index": -1},
+    dest: 360,
+    speed: measure.speed*2,
 }
+// Random jQuery stuff here for now
+elements.container.prepend("<img src='" + assets.bunny + "'id='bunny'/>");
+$('#play-again').hide();
+const bunny = $('#bunny');
+
 // Bunny related things in this object literal
 let bunnys = {
     elem: $('#bunny'), //PROB REMOVE
@@ -63,8 +65,6 @@ let bunnys = {
     }},
     // WHY DOES bunnys. WORK HERE RATHER THAN this. ????
     hop: function () {
-        console.log('bunny: ' + bunnys.y);
-        console.log('this: ' + this.y);
         if (bunnys.y === measure.ground-4) {
             bunnys.y += 128;
             bunnys.x += 120;
@@ -82,53 +82,22 @@ let bunnys = {
     }
 }
 
-let backgrounds = {
-    style: {"position": "absolute",
-            "width": 720,
-            "height": 57,
-            "bottom": 88,
-            "left": 0,
-            "z-index": -1},
-    animate: function (){
-        img = $("<img/>",{
-            id: "bg",
-            src: assets.background
-        });
-        environ.container.prepend(img);
-        const bg = $('#bg');
-        bg.css(this.style);
-        bg.animate({'left': -360}, measure.speed*2, "linear", function(){
-            bg.remove();
-            if (stop === true) {
-                return
-            } else {
-                backgrounds.animate();
-            }
-        });
-        return 
-    }
-}
-
-
 let score = 0;
 let stop = false;
+let obsX = elements.container.width()-36;
 
-let obsX = environ.container.width()-36;
-
-// 
 let highscore = localStorage.getItem("highscore");
 if (highscore === null) {
     highscore = 0;
 }
 $('p.high-score').html(highscore);
 
-
 function obstacles(){
     img = $("<img/>",{
         id: "obs",
         src: assets.obstacle
     });
-    environ.container.append(img);
+    elements.container.append(img);
     const obs = $('#obs');
     obs.css({"position": "absolute",
             "bottom": (measure.ground-70) + measure.growth,
@@ -149,7 +118,37 @@ function obstacles(){
     });
     return 
 }
+// Animations in this object
+let animate = {
+    foregroundPrep: function() {
+        foreground.placeImage();
+        elements.foreground = $('#fg');
+        return
+    },
 
+    backgroundPrep: function() {
+        background.placeImage();
+        elements.background = $('#bg');
+        return
+    },
+    scroll: function(elem, style, dest, speed, prep) {
+        elem.css(style);
+        elem.animate({'left': -dest}, speed, "linear", function(){
+            elem.remove();
+            if (stop === true) {
+                return
+            } else {
+                prep();
+                animate.scroll(elem, style, dest, speed, prep);
+            }
+            // while (stop === false) {
+            //     prep();
+            //     animate.scroll(elem, style, dest, speed, prep);
+            // }
+        });
+        return 
+    },
+}
 // 
 function positions() {
     let id = setInterval(getPos, 10);
@@ -179,7 +178,7 @@ function gameOver() {
     stop = true;
     $('#obs').remove();
     highScore();
-    environ.container.append("<h2 class='game-over'>GAME OVER!</h2>" + "<h2 class='game-over'>YOUR SCORE: " + score + "</h2>");
+    elements.container.append("<h2 class='game-over'>GAME OVER!</h2>" + "<h2 class='game-over'>YOUR SCORE: " + score + "</h2>");
     $('#play-again').show();
 }
 //
@@ -202,14 +201,16 @@ function playAgain() {
     measure.growth = 0;
     score = 0;
     stop = false;
-    obsX = environ.container.width()-36;
+    obsX = elements.container.width()-36;
     measure.speed = 6000;
     $('#play-again').hide();
     $('.game-over').hide();
     $('#fg').remove();
     $('#bg').remove();
-    foreground.animate();
-    backgrounds.animate();
+    animate.foregroundPrep();
+    animate.scroll(elements.foreground, foreground.style, foreground.dest, foreground.speed, animate.foregroundPrep)
+    animate.backgroundPrep();
+    animate.scroll(elements.background, background.style, background.dest, background.speed, animate.backgroundPrep)
     positions();
     obstacles();
     start();
@@ -237,6 +238,8 @@ $('#play-again').one("click", function () {
 })
 }
 bunny.css(bunnys.style);
-backgrounds.animate();
-foreground.animate();
+animate.foregroundPrep();
+animate.scroll(elements.foreground, foreground.style, foreground.dest, foreground.speed, animate.foregroundPrep)
+animate.backgroundPrep();
+animate.scroll(elements.background, background.style, background.dest, background.speed, animate.backgroundPrep)
 start();
