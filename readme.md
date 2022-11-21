@@ -2,6 +2,10 @@
 
 Completed during my 3rd week on General Assembly/'s Software Engineering Immersive, a game inspired by the brilliant side scrolling games of the late \'80s and early \'90s, the simple mechanics of the viral hit flappy bird and one of my daughter's favourite nursery rhymes.
 
+**Hop Little Bunny is deployed at https://hop.skreslett.com**
+
+You can play the game by visiting the link above. The game is browser based and does not require the installation of any additional software.
+
 ---
 | Table of Contents |
 |-|
