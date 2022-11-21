@@ -53,7 +53,7 @@ I started by revisiting my favourite side scrolling games to get a renewed persp
 - As a user I want to play a game for as long or as little time as I like so that I can enjoy it anytime without having to commit a block of time.
 - As a user I want to see what the highest scores achieved are so that I can try and compete against them.
 
-## To Do List
+#### To Do List
 - Build Skeleton Website
     - Decide the game\'s container size and build it out with html and css
     - Add placeholder for highscores
