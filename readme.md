@@ -1,6 +1,6 @@
 # Hop Little Bunny
 
-Completed during my 3rd week General Assembly’s Software Engineering Immersive, a game inspired by the brilliant side scrolling games of the late \'80s and early \'90s, the simple mechanics of the viral hit flappy bird and one of my daughter's favourite nursery rhymes.
+Completed during my 3rd week on General Assembly/'s Software Engineering Immersive, a game inspired by the brilliant side scrolling games of the late \'80s and early \'90s, the simple mechanics of the viral hit flappy bird and one of my daughter's favourite nursery rhymes.
 
 ---
 | Table of Contents |
