@@ -60,7 +60,7 @@ I started by revisiting my favourite side scrolling games to get a renewed persp
     - Decide the game\'s container size and build it out with html and css
     - Add placeholder for highscores
     - Add placeholder for a very short instructions section
-    - Add minimal css styles
+    - Add minimal CSS styles
 
 - Start coding the game logic using placeholder images instead of artwork
     - Animate character with user inputs
@@ -90,7 +90,7 @@ This was very brief and consisted of building the minimum structure for the page
 I decided to approach this stage element by element e.g. animate the bunny and then animate the obstacle and so on. Initially I used HTML\'s \<canvas> and JavaScript\'s requestAnimationFrame(). Although I was able to make good progress I decided to switch to jQuery\'s .animate() as I had more experience with it from our lectures and thought the learning curve wouldn\'t be as steep. From here I was able to regain the ground I lost fairly quickly and progress to collision detection which was easier than I expected thanks to jQuery\'s .position() method.
 
 ### Stage 3
-This stage saw me focusing on creating the artwork for the game, working on my css styles and trying to break the game in any way possible.
+This stage saw me focusing on creating the artwork for the game, working on my CSS styles and trying to break the game in any way possible.
 
 
 ### Highlights
