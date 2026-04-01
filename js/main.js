@@ -31,7 +31,7 @@ let highscore = localStorage.getItem("highscore");
 if (highscore === null) {
     highscore = 0;
 }
-$('p.high-score').html(highscore);
+$('p.high-score').text(highscore);
 
 // 
 function foreground(){
@@ -196,7 +196,7 @@ function highScore() {
         localStorage.setItem("highscore", score);
     }
     highscore = localStorage.getItem("highscore");
-    $('p.high-score').html(highscore);
+    $('p.high-score').text(highscore);
 }
 function start() {
 $('#play').one("click", function () {
