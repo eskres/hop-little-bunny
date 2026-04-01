@@ -161,11 +161,9 @@ function gameOver() {
 function listen() {
     if (stop === false) {
         $('body').on("keydown", function () {
-            console.log("X:"+bnyX+"Y:"+bnyY);
             hop()
         });
         $('body').on("click", function () {
-            console.log("X:"+bnyX+"Y:"+bnyY);
             hop()
         });
     }
