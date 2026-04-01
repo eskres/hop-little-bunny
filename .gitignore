@@ -1,1 +1,13 @@
 readme.md
+
+# Secrets & credentials
+.env
+.env.*
+*.key
+*.pem
+*.cert
+*.p12
+secrets/
+
+# Docker overrides (may contain local secrets)
+docker-compose.override.yml
