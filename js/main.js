@@ -35,7 +35,7 @@ $('p.high-score').text(highscore);
 
 // 
 function foreground(){
-    img = $("<img/>",{
+    const img = $("<img/>",{
         id: "fg",
         src: fgSrc
     });
@@ -59,7 +59,7 @@ function foreground(){
 }
 // 
 function background(){
-    img = $("<img/>",{
+    const img = $("<img/>",{
         id: "bg",
         src: bgSrc
     });
@@ -103,7 +103,7 @@ function hop() {
 };
 
 function obstacles(){
-    img = $("<img/>",{
+    const img = $("<img/>",{
         id: "obs",
         src: obsSrc
     });
