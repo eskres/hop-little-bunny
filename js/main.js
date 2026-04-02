@@ -1,3 +1,4 @@
+"use strict";
 // COLLATE INTO BUILD FUNCTION TO SET THE SCENE
 // Get html div that is to be used as the game's container and assign to variable
 const gme = $('#game-container');
@@ -35,7 +36,7 @@ $('p.high-score').text(highscore);
 
 // 
 function foreground(){
-    img = $("<img/>",{
+    const img = $("<img/>",{
         id: "fg",
         src: fgSrc
     });
@@ -59,7 +60,7 @@ function foreground(){
 }
 // 
 function background(){
-    img = $("<img/>",{
+    const img = $("<img/>",{
         id: "bg",
         src: bgSrc
     });
@@ -103,7 +104,7 @@ function hop() {
 };
 
 function obstacles(){
-    img = $("<img/>",{
+    const img = $("<img/>",{
         id: "obs",
         src: obsSrc
     });
@@ -199,14 +200,14 @@ function highScore() {
     $('p.high-score').text(highscore);
 }
 function start() {
-$('#play').one("click", function () {
+$('#play').one("click", function (event) {
     event.stopPropagation();
     $('#play').fadeOut()
     positions();
     obstacles();
     listen();
 })
-$('#play-again').one("click", function () {
+$('#play-again').one("click", function (event) {
     event.stopPropagation();
     playAgain();
 })
