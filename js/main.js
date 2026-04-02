@@ -200,14 +200,14 @@ function highScore() {
     $('p.high-score').text(highscore);
 }
 function start() {
-$('#play').one("click", function () {
+$('#play').one("click", function (event) {
     event.stopPropagation();
     $('#play').fadeOut()
     positions();
     obstacles();
     listen();
 })
-$('#play-again').one("click", function () {
+$('#play-again').one("click", function (event) {
     event.stopPropagation();
     playAgain();
 })
