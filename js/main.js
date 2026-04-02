@@ -1,3 +1,4 @@
+"use strict";
 // COLLATE INTO BUILD FUNCTION TO SET THE SCENE
 // Get html div that is to be used as the game's container and assign to variable
 const gme = $('#game-container');
