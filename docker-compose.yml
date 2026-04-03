@@ -1,0 +1,18 @@
+services:
+  hop:
+    build: .
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hop.rule=Host(`hop.skreslett.com`)"
+      - "traefik.http.routers.hop.entrypoints=websecure"
+      - "traefik.http.routers.hop.tls=true"
+      - "traefik.http.routers.hop.middlewares=security-headers@file,rate-limit@file"
+      - "traefik.http.services.hop.loadbalancer.server.port=80"
+
+networks:
+  proxy:
+    name: traefik_proxy
+    external: true
