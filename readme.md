@@ -20,6 +20,7 @@ You can play the game by visiting the link above. The game is browser based and 
 | [Key Learnings](#Key-Learnings) |
 | [Bugs](#Bugs) |
 | [Future Improvements](#Future-Improvements) |
+| [2026 Changes](#2026-Changes) |
 
 ---
 ## Technologies Used
@@ -181,3 +182,14 @@ At this stage, no bugs have been detected.
 I think the game would be more enjoyable with additional interactive elements so that it is more challenging and engaging for the player. Ways that I have thought about doing this are by adding \"carrots\" that the player has to collect and by adding platforms / changes in the ground level in front of obstacles. I would also like to add sound effects for collisions and the \"hop\" in order to make the game more immersive.
 
 ---
+## 2026 Changes
+
+Re-deploying this project in 2026 I wanted to address potential security issues, update the dependencies, and bring the deployment up to a standard I would be comfortable hosting on my server. Below is a summary of the changes made:
+
+- **Dependency updates** — Updated jQuery and jQuery UI to their latest major versions.
+
+- **Security improvements** — Added a Content Security Policy with security headers handled by Traefik.
+
+- **Deployment** — Migrated from a static Nginx setup to a Docker container behind a Traefik reverse proxy.
+
+- **General tidying** — Removed console log statements and updated dead links.
