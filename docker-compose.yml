@@ -12,7 +12,7 @@ services:
       - "traefik.http.routers.hop.tls=true"
       - "traefik.http.routers.hop.middlewares=security-headers@file,rate-limit@file,hop-csp@docker"
       - "traefik.http.services.hop.loadbalancer.server.port=80"
-      - "traefik.http.middlewares.hop-csp.headers.customResponseHeaders.Content-Security-Policy=default-src 'self'; script-src 'self' 'sha256-9Bl4g4pfZ6dEu/mMfl0MgfbF68o6b2yaa8EtJ2qvEyA=' https://code.jquery.com https://*.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'"
+      - "traefik.http.middlewares.hop-csp.headers.customResponseHeaders.Content-Security-Policy=default-src 'self'; script-src 'self' 'sha256-9Bl4g4pfZ6dEu/mMfl0MgfbF68o6b2yaa8EtJ2qvEyA=' https://code.jquery.com https://*.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
 
 networks:
   proxy:
